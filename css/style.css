@@ -1,0 +1,29 @@
+body {
+  background: #233047 url('../src/fundo.jpg');
+  background-position:  center;
+}
+
+.container {
+  max-width: 400px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  text-shadow: 2px 2px 2px black;
+}
+
+.icone-tempo {
+  position: relative;
+  top: -50px;
+  margin-bottom: -65px;
+}
+
+.icone-tempo img {
+  width: 130px;
+}
+
+label {
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 1px 1px black;
+}
