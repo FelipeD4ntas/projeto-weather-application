@@ -1,4 +1,4 @@
-const APIKey = 'RIq6tfJXPVTQA9DMWrEumEwaXZdQQnUA';
+const APIKey = 'GemrO7U6o5zMhFrWw1GfyReosdB3fTrB';
 const URLbase = 'https://dataservice.accuweather.com/';
 
 const buscatUrlCidade = nomeCidade => 
