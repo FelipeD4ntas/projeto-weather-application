@@ -1,5 +1,5 @@
 const APIKey = 'RIq6tfJXPVTQA9DMWrEumEwaXZdQQnUA';
-const URLbase = 'http://dataservice.accuweather.com/';
+const URLbase = 'https://dataservice.accuweather.com/';
 
 const buscatUrlCidade = nomeCidade => 
     `${URLbase}locations/v1/cities/search?apikey=${APIKey}&q=${nomeCidade}&language=pt-br`;
