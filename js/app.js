@@ -13,16 +13,17 @@ function addDadosCard({ nome, clima, temperatura }, WeatherIcon) {
     temperaturaCidade.textContent = temperatura;  
 };
 
-function limparInputForm(event) {
-    event.target.reset();
-};
-
-function verificarClasseCard() {
+function mostrarCard() {
     const temDisplayNone = cardDados.classList.contains('d-none');
     if (temDisplayNone) cardDados.classList.remove('d-none');
 };
 
-function buscarObj(LocalizedName, Temperature, WeatherText) {
+function limparInputForm(event) {
+    event.target.reset();
+};
+
+
+function criarObjt(LocalizedName, Temperature, WeatherText) {
     return {
         nome: LocalizedName,
         temperatura: Temperature.Metric.Value,
@@ -31,7 +32,7 @@ function buscarObj(LocalizedName, Temperature, WeatherText) {
 };
 
 function verificaTempo(IsDayTime) {
-    IsDayTime ? imgTempo.src = './src/day.svg' : imgTempo.src = './src/night.svg';
+   imgTempo.src = IsDayTime ? './src/day.svg' : './src/night.svg';
 };
 
 async function buscarDados(event) {
@@ -40,9 +41,9 @@ async function buscarDados(event) {
     const valorInput = form.city.value;
     const [{ Key, LocalizedName }] = await buscarDadosCidade(valorInput);
     const [{ Temperature, WeatherText, IsDayTime, WeatherIcon }] = await buscarClimaCidade(Key);
-    const cidade = buscarObj(LocalizedName, Temperature, WeatherText);
+    const cidade = criarObjt(LocalizedName, Temperature, WeatherText);
 
-    verificarClasseCard();
+    mostrarCard();
     verificaTempo(IsDayTime);
     addDadosCard(cidade, WeatherIcon);
     limparInputForm(event);
