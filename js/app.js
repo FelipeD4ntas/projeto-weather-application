@@ -10,7 +10,7 @@ function addDadosCard({ nome, clima, temperatura }, WeatherIcon) {
     iconeTempo.innerHTML = `<img src="./src/icons/${WeatherIcon}.png" alt="icone tempo" />`
     nomeCidade.textContent = nome;
     climaCidade.textContent = clima;
-    temperaturaCidade.textContent = temperatura;  
+    temperaturaCidade.textContent = temperatura;
 };
 
 function mostrarCard() {
@@ -21,7 +21,6 @@ function mostrarCard() {
 function limparInputForm(event) {
     event.target.reset();
 };
-
 
 function criarObjt(LocalizedName, Temperature, WeatherText) {
     return {
@@ -35,18 +34,34 @@ function verificaTempo(IsDayTime) {
    imgTempo.src = IsDayTime ? './src/day.svg' : './src/night.svg';
 };
 
-async function buscarDados(event) {
-    event.preventDefault();
+function addDadosLocalStorage({ nome }) {
+    localStorage.setItem('cidade', nome);
+};
 
-    const valorInput = form.city.value;
-    const [{ Key, LocalizedName }] = await buscarDadosCidade(valorInput);
+function addDadosUltimaCidade() {
+    const ultimaCidade = localStorage.getItem('cidade');
+    fazerRequest(ultimaCidade)
+};
+
+async function fazerRequest(nomeCidade) {
+    const [{ Key, LocalizedName }] = await buscarDadosCidade(nomeCidade);
     const [{ Temperature, WeatherText, IsDayTime, WeatherIcon }] = await buscarClimaCidade(Key);
     const cidade = criarObjt(LocalizedName, Temperature, WeatherText);
 
     mostrarCard();
-    verificaTempo(IsDayTime);
     addDadosCard(cidade, WeatherIcon);
+    verificaTempo(IsDayTime);
+    addDadosLocalStorage(cidade);
+};
+
+function buscarDados(event) {
+    event.preventDefault();
+    const valorInput = form.city.value;
+
+    fazerRequest(valorInput);
     limparInputForm(event);
 };
 
+addDadosUltimaCidade();
 form.addEventListener('submit', buscarDados);
+
