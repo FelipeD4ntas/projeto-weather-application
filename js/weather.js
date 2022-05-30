@@ -4,7 +4,7 @@ const URLbase = 'https://dataservice.accuweather.com/';
 const buscatUrlCidade = nomeCidade => 
     `${URLbase}locations/v1/cities/search?apikey=${APIKey}&q=${nomeCidade}&language=pt-br`;
 
-const buscatUrlClima = (KeyCidade) => 
+const buscatUrlClima = KeyCidade => 
     `${URLbase}currentconditions/v1/${KeyCidade}?apikey=${APIKey}&language=pt-br`;
 
 const dadosFetch = async url => {

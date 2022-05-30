@@ -63,4 +63,5 @@ function buscarDados(event) {
 };
 
 addDadosUltimaCidade();
+
 form.addEventListener('submit', buscarDados);
